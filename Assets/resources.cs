@@ -42,7 +42,21 @@ public class resources : MonoBehaviour
     public GameObject Improvet_quantity_button_board; public GameObject Improvet_speed_button_board;
 
 
-    public static resources_class[] obj = new resources_class[] {tree, board}; 
+    public static resources_class furniture = new resources_class(12, true);
+    public Image indicator_furniture_img;
+    public TextMeshProUGUI text_quanity_furniture;
+    public TextMeshProUGUI amount_of_mined_furniture_text;
+    public TextMeshProUGUI consumed_text_furniture;
+    public TextMeshProUGUI required_time_furniture_text;
+    public TextMeshProUGUI info_inprovoment_speed_text_furniture;
+    public TextMeshProUGUI info_inprovoment_quanity_text_furniture;
+    public TextMeshProUGUI text_sale_furniture;
+    public Animator anim_furniture;
+    public TMP_InputField enter_qualityl_furniture;
+    public GameObject Improvet_quantity_button_furniture; public GameObject Improvet_speed_button_furniture;
+
+
+    public static resources_class[] obj = new resources_class[] {tree, board, furniture}; 
     void Start()
     {
         YandexGame.ResetSaveProgress();
@@ -57,8 +71,16 @@ public class resources : MonoBehaviour
         board.price_inprovement_speed = YandexGame.savesData.price_inprovement_speed_board;
         board.quantity_resources = YandexGame.savesData.quantity_board;
         board.amount_of_mined_resources = YandexGame.savesData.amount_of_mined_board;
-        board.consumed = YandexGame.savesData.amount_of_consumed_resources;
+        board.consumed = YandexGame.savesData.amount_of_consumed_board;
         board.required_time = YandexGame.savesData.required_time_board;
+
+
+        furniture.price_inprovement_quanity = YandexGame.savesData.price_inprovement_quanity_board;
+        furniture.price_inprovement_speed = YandexGame.savesData.price_inprovement_speed_board;
+        furniture.quantity_resources = YandexGame.savesData.quantity_board;
+        furniture.amount_of_mined_resources = YandexGame.savesData.amount_of_mined_board;
+        furniture.consumed = YandexGame.savesData.amount_of_consumed_furniture;
+        furniture.required_time = YandexGame.savesData.required_time_board;
 
 
 
@@ -89,35 +111,59 @@ public class resources : MonoBehaviour
         board.Improvet_quantity_button = Improvet_quantity_button_board;
         board.Improvet_speed_button = Improvet_speed_button_board;
 
+
+
+        furniture.indicator = indicator_furniture_img;
+        furniture.text_quanity = text_quanity_furniture;
+        furniture.anin = anim_furniture;
+        furniture.amount_of_mined_resources_text = amount_of_mined_furniture_text;
+        furniture.consumed_text = consumed_text_furniture;
+        furniture.required_time_text = required_time_furniture_text;
+        furniture.info_inprovoment_quanity_text = info_inprovoment_quanity_text_furniture;
+        furniture.info_inprovoment_speed_text = info_inprovoment_speed_text_furniture;
+        furniture.enter_qualityl = enter_qualityl_furniture;
+        furniture.text_sale = text_sale_furniture;
+        furniture.Improvet_quantity_button = Improvet_quantity_button_furniture;
+        furniture.Improvet_speed_button = Improvet_speed_button_furniture;
+
         tree.anim_money = anim_money;
         tree.anim_money_text = anim_money_text;
         board.anim_money = anim_money;
         board.anim_money_text = anim_money_text;
+        furniture.anim_money_text = anim_money_text;
+        furniture.anim_money = anim_money;
         tree.check_text();
     }
     void Update()
     {
         tree.calculation_time(ref tree.quantity_resources);
         board.calculation_time(ref tree.quantity_resources);
+        furniture.calculation_time(ref board.quantity_resources);
         money_text.text = YandexGame.savesData.money.ToString("0.0");
     }
     public void boost_tree(){tree.boost();}
     public void boost_board(){board.boost();}
+    public void boost_furniture(){furniture.boost();}
 
     public void inprover_quanity_tree(){tree.Improvet_quantity();}
     public void inprover_quanity_board(){board.Improvet_quantity();}
+    public void inprover_quanity_furniture(){furniture.Improvet_quantity();}
 
     public void inprover_speed_tree(){tree.inprover_speed();}
     public void inprover_speed_board(){board.inprover_speed();}
+    public void inprover_speed_furniture(){furniture.inprover_speed();}
 
     public void quantity_sold_resources_check_tree(){tree.quantity_sold_resources_check();}
     public void quantity_sold_resources_check_board(){board.quantity_sold_resources_check();}
+    public void quantity_sold_resources_check_furniture(){furniture.quantity_sold_resources_check();}
     
     public void quantity_sold_resources_maximum(){tree.quantity_sold_resources_maximum();}
     public void quantity_sold_resources_maximum_board(){board.quantity_sold_resources_maximum();}
+    public void quantity_sold_resources_maximum_furniture(){furniture.quantity_sold_resources_maximum();}
 
     public void sales_resources_tree(){tree.sales_resources();}
     public void sales_resources_board(){board.sales_resources();}
+    public void sales_resources_furniture(){furniture.sales_resources();}
     
     public static void Save()
     {

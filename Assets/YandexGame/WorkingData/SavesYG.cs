@@ -19,10 +19,17 @@ namespace YG
 
         public float price_inprovement_quanity_board = 20;
         public float price_inprovement_speed_board = 20;
-        public float quantity_board = 0;
+        public float quantity_board = 100;
         public float amount_of_mined_board = 1;
-        public float amount_of_consumed_resources = 6;
-        public float required_time_board = 20f;
+        public float amount_of_consumed_board = 6;
+        public float required_time_board = 40f;
+
+        public float price_inprovement_quanity_furniture = 50;
+        public float price_inprovement_speed_furniture = 50;
+        public float quantity_furniture = 0;
+        public float amount_of_mined_furniture = 1;
+        public float amount_of_consumed_furniture = 10;
+        public float required_time_furniture = 60f;
         
         public SavesYG()
         {

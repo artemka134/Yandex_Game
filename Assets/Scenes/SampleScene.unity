@@ -3011,7 +3011,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1285295684}
         m_TargetAssemblyTypeName: resources, Assembly-CSharp
-        m_MethodName: boost_board
+        m_MethodName: boost_furniture
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3451,7 +3451,7 @@ GameObject:
   - component: {fileID: 564493884}
   - component: {fileID: 564493883}
   m_Layer: 5
-  m_Name: "\u043C\u0430\u043A\u0441\u0438\u043C\u0443\u043C \u0434\u043E\u0441\u043E\u043A"
+  m_Name: "\u043C\u0430\u043A\u0441\u0438\u043C\u0443\u043C \u043C\u0435\u0431\u0435\u043B\u0438"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3523,7 +3523,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1285295684}
         m_TargetAssemblyTypeName: resources, Assembly-CSharp
-        m_MethodName: quantity_sold_resources_maximum_board
+        m_MethodName: quantity_sold_resources_maximum_furniture
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3886,7 +3886,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1285295684}
         m_TargetAssemblyTypeName: resources, Assembly-CSharp
-        m_MethodName: inprover_quanity_board
+        m_MethodName: inprover_quanity_furniture
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4646,7 +4646,7 @@ GameObject:
   - component: {fileID: 778155368}
   - component: {fileID: 778155367}
   m_Layer: 5
-  m_Name: "\u043F\u0440\u043E\u0434\u0430\u0442\u044C \u0434\u043E\u0441\u043E\u043A"
+  m_Name: "\u043F\u0440\u043E\u0434\u0430\u0442\u044C \u043C\u0435\u0431\u0435\u043B\u044C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4718,7 +4718,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1285295684}
         m_TargetAssemblyTypeName: resources, Assembly-CSharp
-        m_MethodName: sales_resources_board
+        m_MethodName: sales_resources_furniture
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6251,7 +6251,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.68100005, y: 0.094000004}
   m_AnchorMax: {x: 0.8804845, y: 0.846493}
-  m_AnchoredPosition: {x: -0.9163971, y: -0.085401535}
+  m_AnchoredPosition: {x: -0.91638184, y: -0.08539963}
   m_SizeDelta: {x: 0.66429996, y: 0.1708}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1169145717
@@ -7050,7 +7050,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1285295684}
         m_TargetAssemblyTypeName: resources, Assembly-CSharp
-        m_MethodName: inprover_speed_board
+        m_MethodName: inprover_speed_furniture
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7250,6 +7250,18 @@ MonoBehaviour:
   enter_qualityl_board: {fileID: 1568851687}
   Improvet_quantity_button_board: {fileID: 1228550329}
   Improvet_speed_button_board: {fileID: 163260954}
+  indicator_furniture_img: {fileID: 985425933}
+  text_quanity_furniture: {fileID: 1169145717}
+  amount_of_mined_furniture_text: {fileID: 2020224262}
+  consumed_text_furniture: {fileID: 1768268178}
+  required_time_furniture_text: {fileID: 840784999}
+  info_inprovoment_speed_text_furniture: {fileID: 314102009}
+  info_inprovoment_quanity_text_furniture: {fileID: 246618437}
+  text_sale_furniture: {fileID: 130322536}
+  anim_furniture: {fileID: 1267782145}
+  enter_qualityl_furniture: {fileID: 1555943572}
+  Improvet_quantity_button_furniture: {fileID: 664278940}
+  Improvet_speed_button_furniture: {fileID: 1243498673}
 --- !u!4 &1285295685
 Transform:
   m_ObjectHideFlags: 0
@@ -7522,7 +7534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1427616227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7896,7 +7908,7 @@ GameObject:
   - component: {fileID: 1555943573}
   - component: {fileID: 1555943572}
   m_Layer: 5
-  m_Name: "\u043A\u043E\u043B\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0434\u043E\u0441\u043E\u043A"
+  m_Name: "\u043A\u043E\u043B\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043C\u0435\u0431\u0435\u043B\u0438"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7919,7 +7931,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.11750001, y: 0.202}
   m_AnchorMax: {x: 0.38125002, y: 0.9182122}
-  m_AnchoredPosition: {x: -0.7858887, y: -1.8904724}
+  m_AnchoredPosition: {x: -0.7858887, y: -1.8904629}
   m_SizeDelta: {x: -295.58716, y: -71.27139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1555943572
@@ -8004,7 +8016,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1285295684}
         m_TargetAssemblyTypeName: resources, Assembly-CSharp
-        m_MethodName: quantity_sold_resources_check_board
+        m_MethodName: quantity_sold_resources_check_furniture
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8315,7 +8327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.11750001, y: 0.202}
   m_AnchorMax: {x: 0.38125002, y: 0.9182122}
-  m_AnchoredPosition: {x: -0.7858887, y: -1.8904724}
+  m_AnchoredPosition: {x: -0.7858887, y: -1.8904629}
   m_SizeDelta: {x: -295.58716, y: -71.27139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1568851687
@@ -10402,7 +10414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2134304555
 MonoBehaviour:
   m_ObjectHideFlags: 0
