@@ -15,7 +15,7 @@ public class resources : MonoBehaviour
     public Animator anim_money;
     public TextMeshProUGUI anim_money_text;
     
-    public static resources_class tree = new resources_class(2, false);
+    public static resources_class tree = new resources_class(2, false, 5);
     public Image indicator_tree_img;
     public TextMeshProUGUI text_quanity_tree;
     public TextMeshProUGUI amount_of_mined_tree_text;
@@ -28,7 +28,7 @@ public class resources : MonoBehaviour
     public GameObject Improvet_quantity_button_tree; public GameObject Improvet_speed_button_tree;
 
 
-    public static resources_class board = new resources_class(6, true);
+    public static resources_class board = new resources_class(6, true, 5);
     public Image indicator_board_img;
     public TextMeshProUGUI text_quanity_board;
     public TextMeshProUGUI amount_of_mined_board_text;
@@ -42,7 +42,7 @@ public class resources : MonoBehaviour
     public GameObject Improvet_quantity_button_board; public GameObject Improvet_speed_button_board;
 
 
-    public static resources_class furniture = new resources_class(12, true);
+    public static resources_class furniture = new resources_class(12, true, 5);
     public Image indicator_furniture_img;
     public TextMeshProUGUI text_quanity_furniture;
     public TextMeshProUGUI amount_of_mined_furniture_text;
@@ -75,12 +75,12 @@ public class resources : MonoBehaviour
         board.required_time = YandexGame.savesData.required_time_board;
 
 
-        furniture.price_inprovement_quanity = YandexGame.savesData.price_inprovement_quanity_board;
-        furniture.price_inprovement_speed = YandexGame.savesData.price_inprovement_speed_board;
-        furniture.quantity_resources = YandexGame.savesData.quantity_board;
-        furniture.amount_of_mined_resources = YandexGame.savesData.amount_of_mined_board;
+        furniture.price_inprovement_quanity = YandexGame.savesData.price_inprovement_quanity_furniture;
+        furniture.price_inprovement_speed = YandexGame.savesData.price_inprovement_speed_furniture;
+        furniture.quantity_resources = YandexGame.savesData.quantity_furniture;
+        furniture.amount_of_mined_resources = YandexGame.savesData.amount_of_mined_furniture;
         furniture.consumed = YandexGame.savesData.amount_of_consumed_furniture;
-        furniture.required_time = YandexGame.savesData.required_time_board;
+        furniture.required_time = YandexGame.savesData.required_time_furniture;
 
 
 
@@ -181,10 +181,11 @@ public class resources : MonoBehaviour
 
     public class resources_class
     {
-        public resources_class (float price_resources_in, bool other_resources_in)
+        public resources_class (float price_resources_in, bool other_resources_in, float acceler_rate)
         {
             price_resources = price_resources_in;
             other_resources = other_resources_in;
+            acceleration_rate = acceler_rate;
         }
         
         public bool other_resources;
@@ -211,7 +212,8 @@ public class resources : MonoBehaviour
         public float price_inprovement_speed;
         public float quantity_sold_resources;
         public float consumed;
-       
+        public float acceleration_rate;
+
         public void calculation_time(ref float used_resources)
         {
             indicator.fillAmount = end_time/100;
@@ -363,7 +365,7 @@ public class resources : MonoBehaviour
         {
             if (getting_resource == true)
             {
-            end_time += required_time * 0.5f;
+                end_time += acceleration_rate;
             }
         }
     }
