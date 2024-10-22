@@ -15,7 +15,8 @@ public class resources : MonoBehaviour
     public Animator anim_money;
     public TextMeshProUGUI anim_money_text;
     
-    public static resources_class tree = new resources_class(2, false, 5);
+    // создание объектов класса resources
+    public static resources_class tree = new resources_class(2, false, 5, true);
     public Image indicator_tree_img;
     public TextMeshProUGUI text_quanity_tree;
     public TextMeshProUGUI amount_of_mined_tree_text;
@@ -28,7 +29,7 @@ public class resources : MonoBehaviour
     public GameObject Improvet_quantity_button_tree; public GameObject Improvet_speed_button_tree;
 
 
-    public static resources_class board = new resources_class(6, true, 5);
+    public static resources_class board = new resources_class(6, true, 5, false, 1000);
     public Image indicator_board_img;
     public TextMeshProUGUI text_quanity_board;
     public TextMeshProUGUI amount_of_mined_board_text;
@@ -39,10 +40,13 @@ public class resources : MonoBehaviour
     public TextMeshProUGUI text_sale_board;
     public Animator anim_board;
     public TMP_InputField enter_qualityl_board;
-    public GameObject Improvet_quantity_button_board; public GameObject Improvet_speed_button_board;
+    public GameObject Improvet_quantity_button_board; public GameObject Improvet_speed_button_board; public GameObject button_start_board;
+    public GameObject panel_board;
+    public GameObject text_board_obj;
+    public GameObject sale_panel_board;
 
 
-    public static resources_class furniture = new resources_class(12, true, 5);
+    public static resources_class furniture = new resources_class(12, true, 5, false, 10000);
     public Image indicator_furniture_img;
     public TextMeshProUGUI text_quanity_furniture;
     public TextMeshProUGUI amount_of_mined_furniture_text;
@@ -53,7 +57,10 @@ public class resources : MonoBehaviour
     public TextMeshProUGUI text_sale_furniture;
     public Animator anim_furniture;
     public TMP_InputField enter_qualityl_furniture;
-    public GameObject Improvet_quantity_button_furniture; public GameObject Improvet_speed_button_furniture;
+    public GameObject Improvet_quantity_button_furniture; public GameObject Improvet_speed_button_furniture; public GameObject button_start_furniture;
+    public GameObject panel_furniture;
+    public GameObject text_furniture_obj;
+    public GameObject sale_panel_furniture;
 
 
     public static resources_class[] obj = new resources_class[] {tree, board, furniture}; 
@@ -73,6 +80,7 @@ public class resources : MonoBehaviour
         board.amount_of_mined_resources = YandexGame.savesData.amount_of_mined_board;
         board.consumed = YandexGame.savesData.amount_of_consumed_board;
         board.required_time = YandexGame.savesData.required_time_board;
+        board.start_resources = YandexGame.savesData.start_board;
 
 
         furniture.price_inprovement_quanity = YandexGame.savesData.price_inprovement_quanity_furniture;
@@ -81,6 +89,7 @@ public class resources : MonoBehaviour
         furniture.amount_of_mined_resources = YandexGame.savesData.amount_of_mined_furniture;
         furniture.consumed = YandexGame.savesData.amount_of_consumed_furniture;
         furniture.required_time = YandexGame.savesData.required_time_furniture;
+        furniture.start_resources = YandexGame.savesData.start_furniture;
 
 
 
@@ -110,8 +119,10 @@ public class resources : MonoBehaviour
         board.text_sale = text_sale_board;
         board.Improvet_quantity_button = Improvet_quantity_button_board;
         board.Improvet_speed_button = Improvet_speed_button_board;
-
-
+        board.button_start_resoursec = button_start_board;
+        board.panel_resources = panel_board;
+        board.text_resources_obj = text_board_obj;
+        board.panel_sale = sale_panel_board;
 
         furniture.indicator = indicator_furniture_img;
         furniture.text_quanity = text_quanity_furniture;
@@ -125,6 +136,11 @@ public class resources : MonoBehaviour
         furniture.text_sale = text_sale_furniture;
         furniture.Improvet_quantity_button = Improvet_quantity_button_furniture;
         furniture.Improvet_speed_button = Improvet_speed_button_furniture;
+        furniture.button_start_resoursec = button_start_furniture;
+        furniture.panel_resources = panel_furniture;
+        furniture.text_resources_obj = text_furniture_obj;
+        furniture.panel_sale = sale_panel_furniture;
+
 
         tree.anim_money = anim_money;
         tree.anim_money_text = anim_money_text;
@@ -140,6 +156,24 @@ public class resources : MonoBehaviour
         board.calculation_time(ref tree.quantity_resources);
         furniture.calculation_time(ref board.quantity_resources);
         money_text.text = YandexGame.savesData.money.ToString("0.0");
+
+
+        if (YandexGame.savesData.money >= board.price_start_resources)
+        {
+            button_start_board.GetComponent<UnityEngine.UI.Image>().color = Color.green;
+        }
+        if (YandexGame.savesData.money < board.price_start_resources)
+        {
+            button_start_board.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
+        }
+        if (YandexGame.savesData.money >= furniture.price_start_resources)
+        {
+            button_start_furniture.GetComponent<UnityEngine.UI.Image>().color = Color.green;
+        }
+        if (YandexGame.savesData.money < furniture.price_start_resources)
+        {
+            button_start_furniture.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
+        }
     }
     public void boost_tree(){tree.boost();}
     public void boost_board(){board.boost();}
@@ -164,7 +198,11 @@ public class resources : MonoBehaviour
     public void sales_resources_tree(){tree.sales_resources();}
     public void sales_resources_board(){board.sales_resources();}
     public void sales_resources_furniture(){furniture.sales_resources();}
-    
+
+    public void buy_start_board(){board.buy_start_resoursec();}
+    public void buy_start_furniture(){furniture.buy_start_resoursec();}
+
+
     public static void Save()
     {
         YandexGame.savesData.price_inprovement_quanity_tree = tree.price_inprovement_quanity;
@@ -181,13 +219,15 @@ public class resources : MonoBehaviour
 
     public class resources_class
     {
-        public resources_class (float price_resources_in, bool other_resources_in, float acceler_rate)
+        public bool start_resources;
+        public resources_class(float price_resources_in, bool other_resources_in, float acceler_rate, bool start_res, float price_start = 0)
         {
             price_resources = price_resources_in;
             other_resources = other_resources_in;
             acceleration_rate = acceler_rate;
+            start_resources = start_res;
+            price_start_resources = price_start;
         }
-        
         public bool other_resources;
         public bool getting_resource = true;
         public Image indicator;
@@ -202,7 +242,10 @@ public class resources : MonoBehaviour
         public Animator anin;
         public Animator anim_money;
         public TMP_InputField enter_qualityl;
-        public GameObject Improvet_quantity_button; public GameObject Improvet_speed_button;
+        public GameObject Improvet_quantity_button; public GameObject Improvet_speed_button; public GameObject button_start_resoursec;
+        public GameObject panel_resources;
+        public GameObject text_resources_obj;
+        public GameObject panel_sale;
         public float price_resources;
         public float end_time = 0;
         public float required_time;
@@ -213,76 +256,81 @@ public class resources : MonoBehaviour
         public float quantity_sold_resources;
         public float consumed;
         public float acceleration_rate;
+        public float price_start_resources;
 
         public void calculation_time(ref float used_resources)
         {
-            indicator.fillAmount = end_time/100;
-            if(getting_resource == true || other_resources == false)
+            // расчёт времени до окончания производства
+            if (start_resources == true)
             {
-            end_time += 100/ required_time * Time.deltaTime;
-            }
-            if(end_time >= 100)
-            {
-                end_time = 0;
-                getting_resource = false;
-                quantity_resources += amount_of_mined_resources;
-                anin.SetBool("a", true);
-                anin.Play("New Animation", 0 ,0.0f);
-                Save();
-                check_text();
-            }
-            if (getting_resource == false && used_resources >= consumed)
-            {
-                used_resources -= consumed;
-                getting_resource = true;
-                
-                check_text();
-                Save();
+                indicator.fillAmount = end_time / 100;
+                if (getting_resource == true || other_resources == false)
+                {
+                    end_time += 100 / required_time * Time.deltaTime;
+                }
+                if (end_time >= 100)
+                {
+                    end_time = 0;
+                    getting_resource = false;
+                    quantity_resources += amount_of_mined_resources;
+                    anin.SetBool("a", true);
+                    anin.Play("New Animation", 0, 0.0f);
+                    Save();
+                    check_text();
+                }
+                if (getting_resource == false && used_resources >= consumed)
+                {
+                    used_resources -= consumed;
+                    getting_resource = true;
+
+                    check_text();
+                    Save();
+                }
             }
         }
         public void check_text()
         {
-            for (int i = 0; i<obj.Length;i++)
+            for (int i = 0; i < obj.Length; i++)
             {
                 if (obj[i] != null)
                 {
-                obj[i].check_text_void();
+                    obj[i].check_text_void();
                 }
             }
         }
         public void check_text_void()
         {
             text_quanity.text = quantity_resources.ToString("0");
-            required_time_text.text = required_time.ToString("0.0")+"сек";
-            amount_of_mined_resources_text.text = "+"+amount_of_mined_resources.ToString("0");
+            required_time_text.text = required_time.ToString("0.0") + "сек";
+            amount_of_mined_resources_text.text = "+" + amount_of_mined_resources.ToString("0");
             if (other_resources == true)
             {
-            consumed_text.text = "-"+consumed.ToString("0");
+                consumed_text.text = "-" + consumed.ToString("0");
             }
             info_inprovoment_quanity_text.text = "Улучшить производство за " + price_inprovement_quanity.ToString("0.0");
             if (required_time > 1)
             {
-            info_inprovoment_speed_text.text = "Улучшить скорость за " + price_inprovement_speed.ToString("0.0");
+                info_inprovoment_speed_text.text = "Улучшить скорость за " + price_inprovement_speed.ToString("0.0");
             }
-            else 
+            else
             {
                 info_inprovoment_speed_text.text = "Максимум";
             }
         }
         public void check_textur_button()
         {
-            for (int i = 0; i<obj.Length;i++)
+            for (int i = 0; i < obj.Length; i++)
             {
                 if (obj[i] != null)
                 {
-                obj[i].check_textur_button_void();
+                    obj[i].check_textur_button_void();
                 }
             }
         }
         public void check_textur_button_void()
         {
-            
-            if (YandexGame.savesData.money > price_inprovement_quanity)
+            // проверка текстуры кнопок покупки
+            if (YandexGame.savesData.money >= price_inprovement_quanity)
             {
                 Improvet_quantity_button.GetComponent<UnityEngine.UI.Image>().color = Color.green;
             }
@@ -290,7 +338,7 @@ public class resources : MonoBehaviour
             {
                 Improvet_quantity_button.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
             }
-            if (YandexGame.savesData.money > price_inprovement_speed && required_time > 1)
+            if (YandexGame.savesData.money >= price_inprovement_speed && required_time > 1)
             {
                 Improvet_speed_button.GetComponent<UnityEngine.UI.Image>().color = Color.green;
             }
@@ -298,7 +346,8 @@ public class resources : MonoBehaviour
             {
                 Improvet_speed_button.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
             }
-        }
+			
+		}
         public void Improvet_quantity()
         {
             if (YandexGame.savesData.money >= price_inprovement_quanity)
@@ -332,7 +381,7 @@ public class resources : MonoBehaviour
             if (enter_qualityl.text != "" && Convert.ToSingle(enter_qualityl.text) > quantity_resources)
             {
                 quantity_sold_resources_maximum();
-            } 
+            }
             else
             {
                 quantity_sold_resources = Convert.ToSingle(enter_qualityl.text);
@@ -341,26 +390,29 @@ public class resources : MonoBehaviour
         }
         public void quantity_sold_resources_maximum()
         {
-             enter_qualityl.text = quantity_resources.ToString();
-             check_text_sales();
+            enter_qualityl.text = quantity_resources.ToString();
+            check_text_sales();
         }
+        // продажа ресурсов
         public void sales_resources()
         {
-            if(quantity_sold_resources * price_resources > 0)
-            anim_money.SetBool("a", true);
-            anim_money.Play("anim_money", 0 ,0.0f);
-            anim_money_text.text = "+"+(quantity_sold_resources*price_resources);
-            YandexGame.savesData.money += quantity_sold_resources * price_resources;
-            quantity_resources -= quantity_sold_resources;
-            quantity_sold_resources_check();
-            check_text();
-            check_textur_button();
-            
+            if (quantity_sold_resources * price_resources > 0)
+            {
+                anim_money.SetBool("a", true);
+                anim_money.Play("anim_money", 0, 0.0f);
+                anim_money_text.text = "+" + (quantity_sold_resources * price_resources);
+                YandexGame.savesData.money += quantity_sold_resources * price_resources;
+                quantity_resources -= quantity_sold_resources;
+                quantity_sold_resources_check();
+                check_text();
+                check_textur_button();
+            }
         }
         public void check_text_sales()
         {
             text_sale.text = "Продать за " + (quantity_sold_resources * price_resources);
         }
+        // ускорение производства
         public void boost()
         {
             if (getting_resource == true)
@@ -368,5 +420,17 @@ public class resources : MonoBehaviour
                 end_time += acceleration_rate;
             }
         }
+        public void buy_start_resoursec()
+		{
+            if (YandexGame.savesData.money > price_start_resources)
+			{
+                start_resources = true;
+                YandexGame.savesData.money -= price_start_resources;
+                button_start_resoursec.SetActive(false);
+                panel_resources.SetActive(true);
+                text_resources_obj.SetActive(true);
+                panel_sale.SetActive(true);
+			}
+		}
     }
 }

@@ -1,12 +1,12 @@
 {
-    "idSave": 12016,
+    "idSave": 12101,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "money": 23.441619873046876,
+    "money": 9988999.0,
     "price_inprovement_quanity_tree": 10.0,
     "price_inprovement_speed_tree": 10.0,
-    "quantity_tree": 2.0,
+    "quantity_tree": 3.0,
     "amount_of_mined_tree": 1.0,
     "required_time_tree": 10.0,
     "price_inprovement_quanity_board": 20.0,
@@ -15,10 +15,12 @@
     "amount_of_mined_board": 1.0,
     "amount_of_consumed_board": 6.0,
     "required_time_board": 40.0,
+    "start_board": false,
     "price_inprovement_quanity_furniture": 50.0,
     "price_inprovement_speed_furniture": 50.0,
     "quantity_furniture": 0.0,
     "amount_of_mined_furniture": 1.0,
     "amount_of_consumed_furniture": 10.0,
-    "required_time_furniture": 60.0
+    "required_time_furniture": 60.0,
+    "start_furniture": false
 }
