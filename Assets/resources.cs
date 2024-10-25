@@ -123,6 +123,12 @@ public class resources : MonoBehaviour
         board.panel_resources = panel_board;
         board.text_resources_obj = text_board_obj;
         board.panel_sale = sale_panel_board;
+        if (YandexGame.savesData.start_board == true)
+		{
+            panel_board.SetActive(true);
+            sale_panel_board.SetActive(false);
+		}
+
 
         furniture.indicator = indicator_furniture_img;
         furniture.text_quanity = text_quanity_furniture;
@@ -140,7 +146,11 @@ public class resources : MonoBehaviour
         furniture.panel_resources = panel_furniture;
         furniture.text_resources_obj = text_furniture_obj;
         furniture.panel_sale = sale_panel_furniture;
-
+        if (YandexGame.savesData.start_furniture == true)
+        {
+            panel_furniture.SetActive(true);
+            sale_panel_furniture.SetActive(false);
+        }
 
         tree.anim_money = anim_money;
         tree.anim_money_text = anim_money_text;
@@ -210,7 +220,25 @@ public class resources : MonoBehaviour
         YandexGame.savesData.quantity_tree = tree.quantity_resources;
         YandexGame.savesData.amount_of_mined_tree = tree.amount_of_mined_resources;
         YandexGame.savesData.required_time_tree = tree.required_time;
-        
+
+        YandexGame.savesData.price_inprovement_quanity_board = board.price_inprovement_quanity;
+        YandexGame.savesData.price_inprovement_speed_board = board.price_inprovement_speed;
+        YandexGame.savesData.quantity_board = board.quantity_resources;
+        YandexGame.savesData.amount_of_mined_board = board.amount_of_mined_resources;
+        YandexGame.savesData.amount_of_consumed_board = board.consumed;
+        YandexGame.savesData.required_time_board = board.required_time;
+        YandexGame.savesData.start_board = board.start_resources;
+
+        YandexGame.savesData.price_inprovement_quanity_furniture = furniture.price_inprovement_quanity;
+        YandexGame.savesData.price_inprovement_speed_furniture = furniture.price_inprovement_speed;
+        YandexGame.savesData.quantity_furniture = furniture.quantity_resources;
+        YandexGame.savesData.amount_of_mined_furniture = furniture.amount_of_mined_resources;
+        YandexGame.savesData.amount_of_consumed_furniture = furniture.consumed;
+        YandexGame.savesData.required_time_furniture = furniture.required_time;
+        YandexGame.savesData.start_furniture = furniture.start_resources;
+
+        YandexGame.savesData.start_board = board.start_resources;
+        YandexGame.savesData.start_furniture = furniture.start_resources;
         YandexGame.SaveProgress();
     }
 
