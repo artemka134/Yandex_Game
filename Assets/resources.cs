@@ -28,7 +28,7 @@ public class resources : MonoBehaviour
     public GameObject Improvet_quantity_button_tree; public GameObject Improvet_speed_button_tree;
 
 
-    public static resources_class board = new resources_class(40, true, 4, false, "<sprite=1>", "<sprite=0>", 100);
+    public static resources_class board = new resources_class(30, true, 4, false, "<sprite=1>", "<sprite=0>", 40);
     public Image indicator_board_img;
     public TextMeshProUGUI text_quanity_board;
     public TextMeshProUGUI amount_of_mined_board_text;
@@ -312,6 +312,7 @@ public class resources : MonoBehaviour
                     end_time = 0;
                     getting_resource = false;
                     quantity_resources += amount_of_mined_resources;
+                    quantity_resources = Convert.ToSingle(Math.Round(quantity_resources, 0));
                     anin.SetBool("a", true);
                     anin.Play("New Animation", 0, 0.0f);
                     Save();
@@ -397,7 +398,14 @@ public class resources : MonoBehaviour
                 anim_money_text.text = "-" + price_inprovement_quanity.ToString("0") + " " + "<sprite=3>";
                 YandexGame.savesData.money -= price_inprovement_quanity;
                 price_inprovement_quanity += price_inprovement_quanity * 0.1f;
-                amount_of_mined_resources += Convert.ToSingle(Math.Ceiling(amount_of_mined_resources * 0.1f));
+                if (amount_of_mined_resources < 10)
+                {
+                    amount_of_mined_resources++;
+                }
+                else if (amount_of_mined_resources >= 10)
+                {
+					amount_of_mined_resources += Convert.ToSingle(Math.Truncate(amount_of_mined_resources * 0.1f));
+				}
                 if (other_resources == true)
                 {
                     consumed += consumed * 0.8f;
@@ -425,7 +433,8 @@ public class resources : MonoBehaviour
         }
         public void quantity_sold_resources_check()
         {
-            if (enter_qualityl.text == "")
+			amount_of_mined_resources = Convert.ToSingle(Math.Truncate(amount_of_mined_resources));
+			if (enter_qualityl.text == "")
             {
                 enter_qualityl.text = "0";
             }
@@ -442,7 +451,7 @@ public class resources : MonoBehaviour
         }
         public void quantity_sold_resources_maximum()
         {
-            enter_qualityl.text = quantity_resources.ToString();
+            enter_qualityl.text = quantity_resources.ToString("0");
             check_text_sales();
         }
         // продажа ресурсов

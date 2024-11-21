@@ -1929,13 +1929,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 283567349}
   m_TextComponent: {fileID: 1871358320}
   m_Placeholder: {fileID: 1091186975}
-  m_ContentType: 3
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 2
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 2
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnSubmit:
     m_PersistentCalls:
@@ -5553,13 +5553,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 868799568}
   m_TextComponent: {fileID: 593136613}
   m_Placeholder: {fileID: 421625970}
-  m_ContentType: 3
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 2
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 2
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnSubmit:
     m_PersistentCalls:
@@ -5972,13 +5972,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 910623831}
   m_TextComponent: {fileID: 242996870}
   m_Placeholder: {fileID: 1656706245}
-  m_ContentType: 3
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 2
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 2
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnSubmit:
     m_PersistentCalls:
@@ -10412,7 +10412,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0414\u043E\u0441\u043A\u0438"
+  m_text: "\u041C\u0435\u0431\u0435\u043B\u044C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b717b0d91d98f6479db561f9720e8b7, type: 2}
   m_sharedMaterial: {fileID: -9124399503865160445, guid: 3b717b0d91d98f6479db561f9720e8b7, type: 2}
